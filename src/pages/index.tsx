@@ -87,7 +87,7 @@ const Home: React.FC = () => {
                 <img
                   src={movie.imageUrl}
                   alt={movie.title}
-                  className="w-full h-32 object-cover rounded-lg"
+                  className="w-full h-48 object-cover rounded-lg"
                 />
               </div>
             </Link>
