@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import Image from "next/image";
 
 interface Movie {
   _id: string;
@@ -77,29 +76,27 @@ const Home: React.FC = () => {
       </nav>
 
       {/* Movie List */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-16 bg-gray-400">
+      <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 mt-16">
         {movies.map((movie) => (
-          <div
-            key={movie._id}
-            className="movie-card p-4 border rounded-lg shadow-lg bg-white dark:bg-gray-800"
-          >
-            <Image
-              src={movie.imageUrl}
-              alt={movie.title}
-              className="w-full h-48 object-cover rounded-lg"
-            />
-            <h2 className="text-lg font-semibold mt-2 text-gray-800 dark:text-gray-300">
-              {movie.title}
-            </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              {movie.description}
-            </p>
+          <>
             <Link href={`/movie/${movie._id}`}>
-              <div className="text-blue-500 dark:text-blue-400 mt-2 block font-semibold hover:underline">
-                Үзэх
+              <div
+                key={movie._id}
+                className="movie-card p-4 border rounded-lg shadow-lg bg-white dark:bg-gray-800"
+              >
+                <img
+                  src={movie.imageUrl}
+                  alt={movie.title}
+                  className="w-full h-32 object-cover rounded-lg"
+                />
               </div>
             </Link>
-          </div>
+            <Link href={`/movie/${movie._id}`}>
+              <p className="text-sm font-semibold mt-2 text-gray-800 dark:text-gray-300">
+                {movie.title}
+              </p>
+            </Link>
+          </>
         ))}
       </div>
     </div>
