@@ -64,11 +64,11 @@ const Home: React.FC = () => {
             placeholder="Хайх..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-gray-800 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="bg-gray-800 text-black border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
           />
           <button
             onClick={handleSearch}
-            className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
+            className="bg-red-600 text-black px-4 py-2 rounded-md hover:bg-red-700 transition"
           >
             Хайх
           </button>
