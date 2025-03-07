@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import axios from "axios";
+import Image from "next/image";
 
 interface Movie {
   _id: string;
@@ -12,11 +13,11 @@ interface Movie {
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const response = await axios.get<Movie[]>('/api/movies');
+      const response = await axios.get<Movie[]>("/api/movies");
       setMovies(response.data);
     };
     fetchMovies();
@@ -24,9 +25,25 @@ const Home: React.FC = () => {
 
   // Function to handle search
   const handleSearch = async () => {
-    const response = await axios.get<Movie[]>(`/api/movies?search=${searchQuery}`);
+    const response = await axios.get<Movie[]>(
+      `/api/movies?search=${searchQuery}`
+    );
     setMovies(response.data);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const nav = document.querySelector("nav");
+      if (window.scrollY > 50) {
+        nav?.classList.add("scrolled");
+      } else {
+        nav?.classList.remove("scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="container mx-auto p-6">
@@ -34,7 +51,11 @@ const Home: React.FC = () => {
       <nav className="flex justify-between items-center shadow-md px-6 py-4">
         {/* Logo */}
         <Link href="/">
-          <img src="https://www.movienewsnet.com/wp-content/uploads/2021/04/netflix.jpg" alt="Logo" className="h-16 cursor-pointer" />
+          <img
+            src="https://loodibee.com/wp-content/uploads/Netflix-logo.png"
+            alt="Logo"
+            className="h-16 cursor-pointer"
+          />
         </Link>
 
         {/* Search Box */}
@@ -56,18 +77,27 @@ const Home: React.FC = () => {
       </nav>
 
       {/* Movie List */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-16 bg-gray-400">
         {movies.map((movie) => (
-          <div key={movie._id} className="movie-card p-4 border rounded-md shadow-md">
-            <img
+          <div
+            key={movie._id}
+            className="movie-card p-4 border rounded-lg shadow-lg bg-white dark:bg-gray-800"
+          >
+            <Image
               src={movie.imageUrl}
               alt={movie.title}
-              className="w-full h-48 object-cover rounded-md"
+              className="w-full h-48 object-cover rounded-lg"
             />
-            <h2 className="text-xl font-semibold mt-2">{movie.title}</h2>
-            <p className="text-sm text-gray-500">{movie.description}</p>
+            <h2 className="text-lg font-semibold mt-2 text-gray-800 dark:text-gray-300">
+              {movie.title}
+            </h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {movie.description}
+            </p>
             <Link href={`/movie/${movie._id}`}>
-              <div className="text-blue-500 mt-2 block font-semibold">Үзэх</div>
+              <div className="text-blue-500 dark:text-blue-400 mt-2 block font-semibold hover:underline">
+                Үзэх
+              </div>
             </Link>
           </div>
         ))}

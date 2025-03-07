@@ -17,8 +17,121 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.movie-card {
+  background-color: white;
+  color: black;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+html[data-theme="dark"] .movie-card {
+  background-color: #333;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card img {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+html[data-theme="dark"] h2 {
+  color: #fff;
+}
+
+p {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+html[data-theme="dark"] p {
+  color: #ccc;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  transition: background-color 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+html[data-theme="dark"] nav {
+  background-color: rgba(24, 24, 24, 0.9);
+}
+
+nav.scrolled {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+html[data-theme="dark"] nav.scrolled {
+  background-color: rgba(24, 24, 24, 1);
+}
+
+input {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  width: 200px;
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+html[data-theme="dark"] input {
+  background-color: #333;
+  border-color: #444;
+  color: white;
+}
+
+.movie-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.movie-detail img {
+  border-radius: 12px;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.movie-detail h2 {
+  font-size: 2rem;
+  color: #222;
+}
+
+html[data-theme="dark"] .movie-detail h2 {
+  color: white;
+}
+
+.movie-detail p {
+  font-size: 1rem;
+  color: #555;
+}
+
+html[data-theme="dark"] .movie-detail p {
+  color: #ccc;
 }
