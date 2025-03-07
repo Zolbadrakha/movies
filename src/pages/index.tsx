@@ -34,9 +34,9 @@ const Home: React.FC = () => {
     const handleScroll = () => {
       const nav = document.querySelector("nav");
       if (window.scrollY > 50) {
-        nav?.classList.add("scrolled");
+        nav?.classList.add("bg-black", "shadow-lg");
       } else {
-        nav?.classList.remove("scrolled");
+        nav?.classList.remove("bg-black", "shadow-lg");
       }
     };
 
@@ -45,15 +45,15 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="bg-black text-white min-h-screen">
       {/* Navbar */}
-      <nav className="flex justify-between items-center shadow-md px-6 py-4">
+      <nav className="fixed top-0 w-full flex justify-between items-center px-6 py-4 transition-all duration-300">
         {/* Logo */}
         <Link href="/">
           <img
             src="https://loodibee.com/wp-content/uploads/Netflix-logo.png"
             alt="Logo"
-            className="h-16 cursor-pointer"
+            className="h-12 cursor-pointer"
           />
         </Link>
 
@@ -64,11 +64,11 @@ const Home: React.FC = () => {
             placeholder="Хайх..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-gray-800 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
           />
           <button
             onClick={handleSearch}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+            className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
           >
             Хайх
           </button>
@@ -76,25 +76,20 @@ const Home: React.FC = () => {
       </nav>
 
       {/* Movie List */}
-      <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 mt-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-20 px-6">
         {movies.map((movie) => (
-          <div className="flex mt-4 flex-col items-center" key={movie._id}>
+          <div className="flex flex-col items-center group" key={movie._id}>
             <Link href={`/movie/${movie._id}`}>
-              <div
-                key={movie._id}
-                className="movie-card border rounded-lg shadow-lg bg-white dark:bg-gray-800"
-              >
+              <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer transition transform group-hover:scale-105">
                 <img
                   src={movie.imageUrl}
                   alt={movie.title}
                   className="w-full h-48 object-cover rounded-lg"
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                  <p className="text-white font-bold text-lg">{movie.title}</p>
+                </div>
               </div>
-            </Link>
-            <Link href={`/movie/${movie._id}`}>
-              <p className="text-sm font-semibold mt-2 text-gray-800 dark:text-gray-300">
-                {movie.title}
-              </p>
             </Link>
           </div>
         ))}
