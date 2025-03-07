@@ -78,11 +78,11 @@ const Home: React.FC = () => {
       {/* Movie List */}
       <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 mt-16">
         {movies.map((movie) => (
-          <>
+          <div className="flex mt-4 flex-col items-center" key={movie._id}>
             <Link href={`/movie/${movie._id}`}>
               <div
                 key={movie._id}
-                className="movie-card p-4 border rounded-lg shadow-lg bg-white dark:bg-gray-800"
+                className="movie-card border rounded-lg shadow-lg bg-white dark:bg-gray-800"
               >
                 <img
                   src={movie.imageUrl}
@@ -96,7 +96,7 @@ const Home: React.FC = () => {
                 {movie.title}
               </p>
             </Link>
-          </>
+          </div>
         ))}
       </div>
     </div>
