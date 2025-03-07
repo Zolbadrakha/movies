@@ -47,7 +47,7 @@ const Home: React.FC = () => {
   return (
     <div className="bg-black text-white min-h-screen container px-6">
       {/* Navbar */}
-      <nav className="fixed top-0 w-full flex justify-between items-center px-6 py-4 transition-all duration-300">
+      <nav className="fixed top-0 w-full flex justify-between items-center px-6 py-4 transition-all duration-300 bg-white shadow-lg">
         {/* Logo */}
         <Link href="/">
           <img
@@ -78,7 +78,10 @@ const Home: React.FC = () => {
       {/* Movie List */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-20 px-6">
         {movies.map((movie) => (
-          <div className="flex flex-col items-center group" key={movie._id}>
+          <div
+            className="flex flex-col items-center group mt-8"
+            key={movie._id}
+          >
             <Link href={`/movie/${movie._id}`}>
               <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer transition transform group-hover:scale-105">
                 <img
