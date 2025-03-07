@@ -29,7 +29,6 @@ body {
 
 /* Movie Cards */
 .movie-card {
-  background-color: white;
   color: black;
   border-radius: 12px;
   overflow: hidden;
@@ -102,7 +101,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: black;
   backdrop-filter: blur(10px);
   padding: 10px 20px;
   transition: background-color 0.3s ease-in-out;
