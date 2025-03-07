@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
+/* Font Variables */
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Light Mode Defaults */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -17,48 +20,83 @@
   }
 }
 
+/* Background for Light & Dark Mode */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Movie Cards */
 .movie-card {
   background-color: white;
   color: black;
   border-radius: 12px;
+  overflow: hidden;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  position: relative;
 }
 
 html[data-theme="dark"] .movie-card {
-  background-color: #333;
+  background-color: #181818;
   color: white;
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
+/* Hover Effect */
 .movie-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
+/* Movie Card Image */
 .movie-card img {
   border-radius: 8px;
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
+/* Dark Overlay on Hover */
+.movie-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0.7)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.movie-card:hover::before {
+  opacity: 1;
+}
+
+/* Titles */
 h2 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #222;
 }
 
 html[data-theme="dark"] h2 {
   color: #fff;
 }
 
+/* Descriptions */
 p {
   color: #555;
   font-size: 0.9rem;
 }
 
 html[data-theme="dark"] p {
-  color: #ccc;
+  color: #bbb;
 }
 
+/* Navbar */
 nav {
   position: fixed;
   top: 0;
@@ -72,17 +110,19 @@ nav {
 }
 
 html[data-theme="dark"] nav {
-  background-color: rgba(24, 24, 24, 0.9);
+  background-color: rgba(20, 20, 20, 0.9);
 }
 
+/* Navbar on Scroll */
 nav.scrolled {
   background-color: rgba(255, 255, 255, 1);
 }
 
 html[data-theme="dark"] nav.scrolled {
-  background-color: rgba(24, 24, 24, 1);
+  background-color: rgba(20, 20, 20, 1);
 }
 
+/* Search Input */
 input {
   background-color: white;
   border: 1px solid #ddd;
@@ -94,28 +134,37 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  border-color: #e50914;
+  box-shadow: 0 0 8px rgba(229, 9, 20, 0.5);
 }
 
 html[data-theme="dark"] input {
-  background-color: #333;
-  border-color: #444;
+  background-color: #222;
+  border-color: #333;
   color: white;
 }
 
+/* Movie Detail Page */
 .movie-detail {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
 
+/* Movie Detail Image */
 .movie-detail img {
   border-radius: 12px;
-  max-height: 400px;
+  max-height: 450px;
   object-fit: cover;
+  transition: transform 0.3s ease-in-out;
 }
 
+/* Scale Effect on Hover */
+.movie-detail img:hover {
+  transform: scale(1.05);
+}
+
+/* Movie Title */
 .movie-detail h2 {
   font-size: 2rem;
   color: #222;
@@ -125,11 +174,29 @@ html[data-theme="dark"] .movie-detail h2 {
   color: white;
 }
 
+/* Movie Description */
 .movie-detail p {
   font-size: 1rem;
-  color: #555;
+  color: #666;
 }
 
 html[data-theme="dark"] .movie-detail p {
   color: #ccc;
+}
+
+/* Watch Button */
+.watch-button {
+  display: inline-block;
+  background-color: #e50914;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.watch-button:hover {
+  background-color: #b20710;
 }
