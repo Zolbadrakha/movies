@@ -35,7 +35,6 @@ const MovieDetail: React.FC = () => {
 
   return (
     <div className="relative bg-black min-h-screen text-white">
-      {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0">
         <img
           src={movie.imageUrl}
@@ -44,9 +43,7 @@ const MovieDetail: React.FC = () => {
         />
       </div>
 
-      {/* Movie Content */}
       <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
-        {/* Movie Poster */}
         <div className="w-full md:w-1/3">
           <img
             src={movie.imageUrl}
@@ -55,12 +52,10 @@ const MovieDetail: React.FC = () => {
           />
         </div>
 
-        {/* Movie Details */}
         <div className="w-full md:w-2/3 md:ml-10 mt-6 md:mt-0">
           <h2 className="text-4xl font-bold">{movie.title}</h2>
           <p className="text-lg text-gray-300 mt-4">{movie.description}</p>
 
-          {/* Watch Button */}
           <Link
             href={movie.videoUrl}
             target="_blank"

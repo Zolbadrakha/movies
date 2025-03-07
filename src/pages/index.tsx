@@ -95,7 +95,9 @@ const Home: React.FC = () => {
               </div>
             </Link>
             <div>
-              <p className="text-center mt-2 text-white">{movie.title}</p>
+              <p className="font-semibold text-center mt-2 text-white">
+                {movie.title}
+              </p>
             </div>
           </div>
         ))}
