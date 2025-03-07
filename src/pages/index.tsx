@@ -45,9 +45,9 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white min-h-screen container px-6">
+    <div className="bg-black text-white min-h-screen">
       {/* Navbar */}
-      <nav className="fixed top-0 w-full flex justify-between items-center px-6 py-4 transition-all duration-300 bg-white shadow-lg">
+      <nav className="fixed top-0 w-full flex justify-between items-center px-6 py-4 transition-all duration-300 bg-black shadow-lg">
         {/* Logo */}
         <Link href="/">
           <img
